@@ -26,15 +26,16 @@
                     <table class="table table-hover" id="tabela">
                         <thead>
                             <tr>
-                                <th class="text-center">Nome</th>
+                                <th class="text-center">Título</th>
                                 <th class="text-center">Duração</th>
                                 <th class="text-center">Ação</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($videos as $video)    
                             <tr>
-                                <td>Vídeo exemplo 1</td>
-                                <td>3:18</td>
+                                <td>{{ $video->titulo }}</td>
+                                <td>{{ $video->duracao }}</td>
                                 <td class="table-buttons">
                                     <a href="/jogos/atualizar">
                                         <button class="table-btn edit" type="submit"></button>
@@ -45,6 +46,7 @@
                                     </form>
                                 </td>                
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

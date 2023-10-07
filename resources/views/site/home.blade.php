@@ -26,14 +26,14 @@
 
             <div class="direita">
                 <div class="contato">
-                    <h1>Jogos e Consoles</h1>
-                    <p>Tabela que mostra os jogos cadastrados e seus consoles disponíveis.<p>
+                    <h1>Vídeos</h1>
+                    <p>Tabela que mostra os vídeos disponíveis.<p>
                     <div class="table-container">
                         <table class="table table-hover" id="tabela">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Console</th>
-                                    <th class="text-center">Jogo</th>
+                                    <th class="text-center">Nome</th>
+                                    <th class="text-center">Duração</th>
                                 </tr>
                             </thead>
                             <tbody>
