@@ -7,11 +7,6 @@
     </head>
 
     <body>
-        <header>
-            @component('layouts.header')
-            @endcomponent
-        </header>
-
         <div class="conteudo-pagina">
             <div class="titulo-pagina">
                 <h1>Vídeos</h1>
