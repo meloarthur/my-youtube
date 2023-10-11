@@ -14,9 +14,9 @@
 
             <div class="informacao-pagina">
                 <div class="contato-principal">
-                <form action="/cadastro" method="POST">
+                <form action="/cadastro" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input name="nome_arquivo" type="file" placeholder="Arquivo de vídeo *" class="borda-preta" accept=".mp4" required onchange="updateVideoDetails(this)">
+                    <input name="arquivo" type="file" placeholder="Arquivo de vídeo *" class="borda-preta" accept=".mp4" required onchange="updateVideoDetails(this)">
                     <br>
                     <input name="titulo" type="text" placeholder="Nome *" class="borda-preta" required>
                     <br>
