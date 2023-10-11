@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <title>My Youtube</title>
+        <title>My Youtube - Atualizar</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
@@ -9,51 +9,28 @@
     <body>
         <div class="conteudo-pagina">
             <div class="titulo-pagina">
-                <h1>Vídeos</h1>
+                <h1>Atualizar vídeo</h1>
             </div>
-            
-            <a href="/cadastro" class="btn btn-primary add">
-                <button class="add" type="submit">Adicionar vídeo</button>
-            </a>
 
             <div class="informacao-pagina">
-                <div class="table-responsive text-center">
-                    <table class="table table-hover" id="tabela">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Título</th>
-                                <th class="text-center">Duração</th>
-                                <th class="text-center">Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($videos as $video)    
-                            <tr>
-                                <td>{{ $video->titulo }}</td>
-                                <td>{{ floor($video->duracao / 60) }}:{{ str_pad($video->duracao % 60, 2, '0', STR_PAD_LEFT) }}</td>
-                                <td class="table-buttons">
-                                    <a href="/atualizar/{{$video->id}}">
-                                        <button class="table-btn watch" type="submit"></button>
-                                    </a>
-                                    <a href="/jogos/atualizar">
-                                        <button class="table-btn edit" type="submit"></button>
-                                    </a>
-                                    <form method="POST" action="/jogos/excluir">
-                                        @csrf
-                                        <button type="submit" class="table-btn delete"></button>
-                                    </form>
-                                </td>                
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="contato-principal">
+                <form action="/atualizar/{{ $video->id }}" method="POST">
+                    @csrf
+                    <input name="id" type="text" value="{{ $video->id }}" style="display: none">
+                    <input name="titulo" type="text" placeholder="Título *" class="borda-preta" value="{{ $video->titulo }}" required>
+                    <br>
+                    <input name="duracao" type="number" placeholder="Duração *" class="borda-preta" value="{{ $video->duracao }}" readonly>
+                    <br>
+                    <input name="nome_arquivo" type="text" placeholder="Nome do arquivo *" class="borda-preta" value="{{ $video->nome_arquivo }}" readonly>
+                    <br>
+                    <button type="submit" class="borda-preta">ENVIAR</button>
+                </form>
                 </div>
             </div>
         </div>
-        <footer>
-            @component('layouts.footer')
-            @endcomponent
-        </footer>
+
+        @component('layouts.footer')
+        @endcomponent
     </body>
 
     <style>
@@ -129,6 +106,10 @@
             color: #333;
         }
 
+        .borda-preta {
+            border: solid 1px #333;
+        }
+
         th {
             width: 25%;
             font-size: 18px;
@@ -167,23 +148,10 @@
             background-repeat: no-repeat;
             background-position: center;
             font-size: 16px;
-            text-decoration: none;
-            color: #fff
         }
 
         .add:hover {
             background-color: #589c0f;
-        }
-
-        .watch {
-            background-image: url("images/watch.svg");
-            background-color: #0095ac;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        .watch:hover {
-            background-color: #01cbc4;
         }
         
         .edit {
@@ -209,4 +177,8 @@
         }
 
     </style>
+
+    <script>
+        
+    </script>
 </html>

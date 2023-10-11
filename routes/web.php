@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class,'index']);
+Route::get('/', [\App\Http\Controllers\HomeController::class,'index'])->name('home');
 
 Route::get('/cadastro', [\App\Http\Controllers\HomeController::class,'viewCadastro']);
 Route::post('/cadastro', [\App\Http\Controllers\HomeController::class,'cadastro']);
+
+Route::get('/atualizar/{id}', [\App\Http\Controllers\HomeController::class,'viewAtualizar']);
+Route::post('/atualizar/{id}', [\App\Http\Controllers\HomeController::class,'atualizar']);

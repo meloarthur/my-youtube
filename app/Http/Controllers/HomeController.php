@@ -7,25 +7,49 @@ use App\Models\Video;
 
 class HomeController extends Controller
 {
-    public function index() {
-        $videos = $this->getVideos();
+    public function index()
+    {
+        $videos = $this->getAllVideos();
 
         return view('site.videos', [
             'videos' => $videos
         ]);
     }
 
-    public function getVideos() {
-        $videos = Video::orderBy('id', 'desc')->get();
+    public function getAllVideos()
+    {
+        $videos = Video::orderBy('id')->get();
 
         return json_decode($videos);
     }
 
-    public function viewCadastro() {
+    public function getVideo($id)
+    {
+        $video = Video::find($id);
+
+        if (!isset($video)) {
+            return response()->json(['erro' => 'Vídeo não encontrado'], 404);
+        }
+
+        return json_decode($video);
+    }
+
+    public function viewCadastro()
+    {
         return view('site.cadastro');
     }
 
-    public function cadastro(Request $request) {
+    public function viewAtualizar(Request $request)
+    {
+        $video = $this->getVideo($request->id);
+        
+        return view('site.atualizar',[
+            'video' => $video
+        ]);
+    }
+
+    public function cadastro(Request $request)
+    {
         try {
             if ($request->hasFile('arquivo')) {
                 $file = $request->file('arquivo');
@@ -47,6 +71,32 @@ class HomeController extends Controller
         } catch (\Throwable $th) {
             report($th);
             return response()->json(['erro' => 'Erro ao inserir vídeo'], 400);
+        }
+    }
+
+    public function atualizar(Request $request)
+    {
+        try {
+            
+            $video = Video::find($request->id);
+
+            if (!isset($video)) {
+                return response()->json(['erro' => 'Vídeo solicitado não existe'], 404);
+            }
+
+            $video->update([
+                'titulo' => $request->titulo
+            ]);
+
+            return redirect()
+                ->route('home')
+                ->with('msg', 'Vídeo atualizado com sucesso');
+
+        } catch (\Throwable $th) {
+
+            report($th);
+            return response()->json(['erro' => 'Erro ao atualizar vídeo'], 400);
+
         }
     }
 }
