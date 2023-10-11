@@ -14,3 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\HomeController::class,'index']);
+
+Route::get('/cadastro', [\App\Http\Controllers\HomeController::class,'viewCadastro']);
+Route::post('/cadastro', [\App\Http\Controllers\HomeController::class,'cadastro']);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <title>My Youtube</title>
+        <title>My Youtube - Cadastro</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
@@ -9,49 +9,46 @@
     <body>
         <div class="conteudo-pagina">
             <div class="titulo-pagina">
-                <h1>Vídeos</h1>
+                <h1>Upload de Vídeo</h1>
             </div>
-            
-            <a href="/cadastro" class="btn btn-primary add">
-                <button class="add" type="submit">Adicionar vídeo</button>
-            </a>
 
             <div class="informacao-pagina">
-                <div class="table-responsive text-center">
-                    <table class="table table-hover" id="tabela">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Título</th>
-                                <th class="text-center">Duração</th>
-                                <th class="text-center">Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($videos as $video)    
-                            <tr>
-                                <td>{{ $video->titulo }}</td>
-                                <td>{{ floor($video->duracao / 60) }}:{{ str_pad($video->duracao % 60, 2, '0', STR_PAD_LEFT) }}</td>
-                                <td class="table-buttons">
-                                    <a href="/jogos/atualizar">
-                                        <button class="table-btn edit" type="submit"></button>
-                                    </a>
-                                    <form method="POST" action="/jogos/excluir">
-                                        @csrf
-                                        <button type="submit" class="table-btn delete"></button>
-                                    </form>
-                                </td>                
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="contato-principal">
+                <form action="/cadastro" method="POST">
+                    @csrf
+                    <input name="nome_arquivo" type="file" placeholder="Arquivo de vídeo *" class="borda-preta" accept=".mp4" required onchange="updateVideoDetails(this)">
+                    <br>
+                    <input name="titulo" type="text" placeholder="Nome *" class="borda-preta" required>
+                    <br>
+                    <input name="duracao" type="number" placeholder="Duração em segundos *" class="borda-preta" readonly required>
+                    <br>
+                    <button type="submit" class="borda-preta">ENVIAR</button>
+                </form>
                 </div>
             </div>
         </div>
-        <footer>
-            @component('layouts.footer')
-            @endcomponent
-        </footer>
+        
+        @component('layouts.footer')
+        @endcomponent
     </body>
+
+    <script>
+        function updateVideoDetails(input) {
+            if (input.files.length > 0) {
+                const file = input.files[0];
+                const video = document.createElement('video');
+    
+                video.addEventListener('loadedmetadata', function() {
+                    const durationInSeconds = Math.round(video.duration);
+                    const inputDuracao = document.querySelector('input[name="duracao"]');
+    
+                    inputDuracao.value = durationInSeconds;
+                });
+    
+                video.src = URL.createObjectURL(file);
+            }
+        }
+    </script>
 
     <style>
         html, body {
@@ -103,6 +100,11 @@
             color: #333333;
         }
 
+        .consoles-checkbox {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
         .conteudo-pagina {
             width: 100%;
             height: 100%;
@@ -124,6 +126,10 @@
 
         .informacao-pagina p{
             color: #333;
+        }
+
+        .borda-preta {
+            border: solid 1px #333;
         }
 
         th {
@@ -164,8 +170,6 @@
             background-repeat: no-repeat;
             background-position: center;
             font-size: 16px;
-            text-decoration: none;
-            color: #fff
         }
 
         .add:hover {
@@ -195,4 +199,8 @@
         }
 
     </style>
+
+    <script>
+        
+    </script>
 </html>
