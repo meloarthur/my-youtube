@@ -39,7 +39,7 @@ class HomeController extends Controller
         } catch (\Throwable $th) {
 
             report($th);
-            return response()->json(['erro' => 'Erro ao inserir jogo'], 400);
+            return response()->json(['erro' => 'Erro ao inserir vídeo'], 400);
 
         }
     }
