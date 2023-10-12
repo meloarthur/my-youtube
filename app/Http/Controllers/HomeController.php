@@ -99,4 +99,28 @@ class HomeController extends Controller
 
         }
     }
+
+    public function excluir(Request $request)
+    {
+        try {
+            
+            $video = Video::find($request->id);
+
+            if (!isset($video)) {
+                return response()->json(['erro' => 'Vídeo solicitado não existe'], 404);
+            }
+            
+            $video->delete();
+
+            return redirect()
+                ->route('home')
+                ->with('msg', 'Vídeo excluido com sucesso');
+
+        } catch (\Throwable $th) {
+
+            report($th);
+            return response()->json(['erro' => 'Erro ao excluir vídeo'], 400);
+
+        }
+    }
 }

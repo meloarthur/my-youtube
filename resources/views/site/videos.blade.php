@@ -32,13 +32,13 @@
                                 <td>{{ $video->titulo }}</td>
                                 <td>{{ floor($video->duracao / 60) }}:{{ str_pad($video->duracao % 60, 2, '0', STR_PAD_LEFT) }}</td>
                                 <td class="table-buttons">
-                                    <a href="/atualizar/{{$video->id}}">
+                                    <a href="">
                                         <button class="table-btn watch" type="submit"></button>
                                     </a>
-                                    <a href="/jogos/atualizar">
+                                    <a href="/atualizar/{{$video->id}}">
                                         <button class="table-btn edit" type="submit"></button>
                                     </a>
-                                    <form method="POST" action="/jogos/excluir">
+                                    <form method="POST" action="/excluir/{{$video->id}}">
                                         @csrf
                                         <button type="submit" class="table-btn delete"></button>
                                     </form>

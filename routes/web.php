@@ -20,3 +20,5 @@ Route::post('/cadastro', [\App\Http\Controllers\HomeController::class,'cadastro'
 
 Route::get('/atualizar/{id}', [\App\Http\Controllers\HomeController::class,'viewAtualizar']);
 Route::post('/atualizar/{id}', [\App\Http\Controllers\HomeController::class,'atualizar']);
+
+Route::post('/excluir/{id}', [\App\Http\Controllers\HomeController::class,'excluir']);
