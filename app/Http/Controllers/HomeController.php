@@ -48,6 +48,15 @@ class HomeController extends Controller
         ]);
     }
 
+    public function assistir(Request $request)
+    {
+        $video = $this->getVideo($request->id);
+
+        return view('site.assistir', [
+            'video' => $video
+        ]);
+    }
+
     public function cadastro(Request $request)
     {
         try {
@@ -64,7 +73,9 @@ class HomeController extends Controller
                     'nome_arquivo' => $fileName // Salve o nome do arquivo no banco de dados
                 ]);
     
-                return redirect('/');
+                return redirect()
+                    ->route('home')
+                    ->with('msg', 'Vídeo cadastrado com sucesso');
             } else {
                 return response()->json(['erro' => 'Nenhum arquivo enviado.'], 400);
             }

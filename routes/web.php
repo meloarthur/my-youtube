@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class,'index'])->name('home');
 
+Route::get('/assistir/{id}', [\App\Http\Controllers\HomeController::class,'assistir']);
+
 Route::get('/cadastro', [\App\Http\Controllers\HomeController::class,'viewCadastro']);
 Route::post('/cadastro', [\App\Http\Controllers\HomeController::class,'cadastro']);
 

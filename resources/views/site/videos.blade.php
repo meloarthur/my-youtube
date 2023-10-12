@@ -9,7 +9,7 @@
     <body>
         <div class="conteudo-pagina">
             <div class="titulo-pagina">
-                <h1>Vídeos</h1>
+                <h1>My Youtube</h1>
             </div>
             
             <a href="/cadastro" class="btn btn-primary add">
@@ -32,7 +32,7 @@
                                 <td>{{ $video->titulo }}</td>
                                 <td>{{ floor($video->duracao / 60) }}:{{ str_pad($video->duracao % 60, 2, '0', STR_PAD_LEFT) }}</td>
                                 <td class="table-buttons">
-                                    <a href="">
+                                    <a href="/assistir/{{$video->id}}" target="_blank">
                                         <button class="table-btn watch" type="submit"></button>
                                     </a>
                                     <a href="/atualizar/{{$video->id}}">
