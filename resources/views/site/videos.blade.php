@@ -16,7 +16,7 @@
                 <button class="add" type="submit">Adicionar vídeo</button>
             </a>
 
-            <div class="informacao-pagina">
+            <div class="informacao-pagina table-container">
                 <div class="table-responsive text-center">
                     <table class="table table-hover" id="tabela">
                         <thead>
@@ -121,32 +121,27 @@
 
         .informacao-pagina {
             width: 100%;
-            border: 2px rgba(0,0,0,.05) solid;
-
+            border: 2px rgba(0, 0, 0, 0.05) solid;
+            margin-top: 20px; /* Ajuste a margem superior conforme necessário */
         }
 
         .informacao-pagina p{
             color: #333;
         }
 
-        th {
-            width: 25%;
-            font-size: 18px;
-            padding-right:20px;
+        th, td {
+            padding: 15px; /* Aumente o valor do padding para adicionar mais espaço dentro das células */
+            margin: 5px; /* Adicione margens entre as células */
         }
 
         th:first-child {
-            padding-left:20px;
-            padding-right:0;
-        }
-
-        td {
-            padding-right:20px;
+            padding-left: 20px;
+            padding-right: 10px; /* Ajuste o valor conforme necessário */
         }
 
         td:first-child {
-            padding-left:20px;
-            padding-right:0;
+            padding-left: 20px;
+            padding-right: 10px; /* Ajuste o valor conforme necessário */
         }
 
         .table-buttons {
@@ -206,6 +201,13 @@
 
         .delete:hover {
             background-color: #e44242;
+        }
+
+        .table-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
     </style>
