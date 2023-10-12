@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 /* Rotas de Videos */
 Route::get('/videos', [App\Http\Controllers\HomeController::class, 'getVideos']);
+
+Route::post('/excluirArquivo/{fileName}', [App\Http\Controllers\HomeController::class, 'excluirArquivo']);

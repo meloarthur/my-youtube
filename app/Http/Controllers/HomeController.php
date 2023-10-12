@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Models\Video;
 
 class HomeController extends Controller
@@ -32,6 +33,18 @@ class HomeController extends Controller
         }
 
         return json_decode($video);
+    }
+
+    public function excluirArquivo($fileName) {
+        try {
+            $filePath = public_path('videos/' . $fileName);
+            File::delete($filePath);
+    
+            return response()->json(['msg' => 'Vídeo excluído do repositório local.'], 200);
+        } catch (\Throwable $th) {
+            report($th);
+            return response()->json(['erro' => 'Erro ao excluir o arquivo'], 400);
+        }
     }
 
     public function viewCadastro()
@@ -122,6 +135,7 @@ class HomeController extends Controller
             }
             
             $video->delete();
+            $this->excluirArquivo($video->nome_arquivo);
 
             return redirect()
                 ->route('home')
